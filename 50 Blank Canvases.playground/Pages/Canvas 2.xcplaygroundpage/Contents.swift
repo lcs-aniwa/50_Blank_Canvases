@@ -13,7 +13,7 @@ import Cocoa
 import PlaygroundSupport
 
 // Create canvas
-let canvas = Canvas(width: 400, height: 300)
+let canvas = Canvas(width: 200, height: 100)
 
 /*:
  ## Add your code below
@@ -24,6 +24,29 @@ let canvas = Canvas(width: 400, height: 300)
  */
 // Replace this comment with your first comment – what is the goal of the code you're about to write?
 
+//Create a starting point for travelling through Perlin noise space
+var start = 0.0
+
+//Create a Perlin noise generator
+let p = PerlinGenerator()
+
+//draw vertical lines across the canvas
+    for x in stride(from: 0, through: 200, by: 1){
+        
+        //Move througgh Perlin noise space
+        start += 0.01
+        
+        //Get Prtlin noise (gives us a randomnumber between -1 and 1)
+        
+        let randomValue = p.perlinNoise(x: start)
+
+        //Genetate a random height
+        let toY = random(from: 0, toButNotIncluding: 101)
+
+        //Draw the line
+        canvas.drawLine(fromX: x, fromY: 0, toX: x, toY: toY)
+
+}
 
 
 /*:
